@@ -2,9 +2,9 @@ import { getData } from "./productData.mjs";
 
 function productCardTemplate(product) {
   return `<li class="product-card">
-    <a href="product_pages/index.html?product=${product.Id}">
+    <a href="/product_pages/index.html?product=${product.Id}">
       <img
-        src="${product.Image}"
+        src="${product.Images.PrimaryMedium}"
         alt="${product.Name}"
       />
       <h3 class="card__brand">${product.Brand.Name}</h3>
@@ -19,11 +19,6 @@ function renderList(list, element) {
   element.insertAdjacentHTML("afterbegin", htmlStrings.join(""));
 }
 
-function filterProducts(products) {
-  const productIds = ["880RR", "985RF", "985PR", "344YJ"];
-  return products.filter((product) => productIds.includes(product.Id));
-}
-
 export default async function productList(selector, category) {
   // Get the element where the products will appear
   const element = document.querySelector(selector);
@@ -34,9 +29,6 @@ export default async function productList(selector, category) {
   // Check that we received the products
   console.log(products);
 
-  // Filter the products to show only the original four tents
-  const filteredProducts = filterProducts(products);
-
-  // Display the filtered products on the page
-  renderList(filteredProducts, element);
+// Display all products from the selected category
+renderList(products, element);
 }

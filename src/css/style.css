@@ -216,7 +216,31 @@ button {
   }
 }
 
+/* added on 10/24/26_team activity 5_Display the four product categories in a grid  */
+.categories {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1em;
+  padding: 1em;
+  text-align: center;
+}
+
+.categories a {
+  text-decoration: none;
+  color: var(--dark-grey);
+}
+
+.categories img {
+  width: 100px;
+  display: block;
+  margin: auto;
+}
+
+/* added on 10/24/26_team activity 5_Display the four product categories in a grid- END  */
+
 footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+
