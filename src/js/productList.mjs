@@ -1,4 +1,4 @@
-import { getData } from "./productData.mjs";
+import { getProductsByCategory } from "./externalServices.mjs";
 
 function productCardTemplate(product) {
   return `<li class="product-card">
@@ -24,7 +24,7 @@ export default async function productList(selector, category) {
   const element = document.querySelector(selector);
 
   // Get the products from our JSON file
-  const products = await getData(category);
+  const products = await getProductsByCategory(category);
 
   // Check that we received the products
   console.log(products);

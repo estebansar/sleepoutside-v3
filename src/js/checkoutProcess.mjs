@@ -1,4 +1,5 @@
 import { getLocalStorage } from "./utils.mjs";
+import { checkout } from "./externalServices.mjs";
 
 const checkoutProcess = {
   key: "",
@@ -47,6 +48,34 @@ const checkoutProcess = {
     document.querySelector("#order-total").textContent =
         `$${this.orderTotal.toFixed(2)}`;
     },
+
+    packageItems: function () {
+  return this.list.map((item) => {
+    return {
+      id: item.Id,
+      name: item.Name,
+      price: item.FinalPrice,
+      quantity: 1,
+    };
+  });
+},
+
+
+  checkout: async function (form) {
+    this.calculateOrdertotal();
+
+    const formData = new FormData(form);
+    const order = Object.fromEntries(formData.entries());
+
+    order.orderDate = new Date().toISOString();
+    order.items = this.packageItems();
+    order.orderTotal = this.orderTotal;
+    order.shipping = this.shipping;
+    order.tax = this.tax;
+
+    const response = await checkout(order);
+    console.log(response);
+  },
 
 };
 
