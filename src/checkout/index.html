@@ -43,7 +43,14 @@
             <input type="text" id="state" name="state" required />
 
             <label for="zip">Zip Code</label>
-            <input type="text" id="zip" name="zip" required />
+            <input
+              type="text"
+              id="zip"
+              name="zip"
+              pattern="[0-9]{5}"
+              title="Enter a 5-digit ZIP code"
+              required
+            />
           </fieldset>
 
           <fieldset>
@@ -54,6 +61,9 @@
               type="text"
               id="cardNumber"
               name="cardNumber"
+              inputmode="numeric"
+              pattern="[0-9]{13,19}"
+              title="Enter a card number with 13 to 19 digits"
               required
             />
 
@@ -63,6 +73,8 @@
               id="expiration"
               name="expiration"
               placeholder="MM/YY"
+              pattern="(0[1-9]|1[0-2])/[0-9]{2}"
+              title="Enter the expiration date as MM/YY"
               required
             />
 
@@ -71,6 +83,9 @@
               type="text"
               id="code"
               name="code"
+              inputmode="numeric"
+              pattern="[0-9]{3,4}"
+              title="Enter a 3 or 4 digit security code"
               required
             />
           </fieldset>
