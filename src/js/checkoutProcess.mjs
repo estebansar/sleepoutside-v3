@@ -73,8 +73,15 @@ const checkoutProcess = {
     order.shipping = this.shipping;
     order.tax = this.tax;
 
-    const response = await checkout(order);
-    console.log(response);
+    try {
+      const response = await checkout(order);
+      console.log(response);
+
+      localStorage.removeItem(this.key);
+      window.location.href = "/checkout/success.html";
+    } catch (err) {
+      console.error("Checkout error:", err);
+    }
   },
 
 };
