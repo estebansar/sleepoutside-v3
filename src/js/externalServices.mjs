@@ -33,3 +33,26 @@ export async function checkout(payload) {
 
   return await convertToJson(response);
 }
+
+export async function loginRequest(creds) {
+  const response = await fetch("http://server-nodejs.cit.byui.edu:3000/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(creds),
+  });
+
+  return await convertToJson(response);
+}
+
+export async function getOrders(token) {
+  const response = await fetch("http://server-nodejs.cit.byui.edu:3000/orders", {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return await convertToJson(response);
+}
