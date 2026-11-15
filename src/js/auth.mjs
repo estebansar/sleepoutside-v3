@@ -9,7 +9,7 @@ export async function login(creds, redirect = "/") {
 
     window.location = redirect;
   } catch (err) {
-    console.log(err);
+    alert(err.message?.message || "Login failed. Please try again.");
   }
 }
 

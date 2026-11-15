@@ -35,7 +35,7 @@ export async function checkout(payload) {
 }
 
 export async function loginRequest(creds) {
-  const response = await fetch("http://server-nodejs.cit.byui.edu:3000/login", {
+  const response = await fetch(baseURL + "login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -43,11 +43,12 @@ export async function loginRequest(creds) {
     body: JSON.stringify(creds),
   });
 
-  return await convertToJson(response);
+  const data = await convertToJson(response);
+  return data.accessToken;
 }
 
 export async function getOrders(token) {
-  const response = await fetch("http://server-nodejs.cit.byui.edu:3000/orders", {
+  const response = await fetch(baseURL + "orders", {
     method: "GET",
     headers: {
       Authorization: `Bearer ${token}`,
